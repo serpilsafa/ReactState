@@ -1,41 +1,42 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import './App.css';
 import Person from './Person/Person'
 
-class App1 extends Component {
+function App1 (props){
 
-  clickedButton = () => {
-   // return console.log("clicked");
-   this.setState({
-     persons:[
-       {name: 'Sevil', age : 30},
-       {name: 'Seda', age: 25},
-       {name: 'Sedef', age: 20}
-     ]
-   });
- };
+ 
+  const [personState, setPersonState] = useState({
+    persons: [
+      {name :'Serpil', age : 28},
+      {name : 'Seda', age : 25},
+      {name : 'Sedef', age : 21}
+    ],
+    otherState: 'Some text here'
+  });
 
-state = {
-  persons: [
-    {name :'Serpil', age : 28},
-    {name : 'Seda', age : 25},
-    {name : 'Sedef', age : 21}
-  ],
-  otherState: 'Some text here'
- };
+  const clickedButton = () =>{
+    setPersonState({
+      persons:[
+        {name: 'Sevil', age : 30},
+        {name: 'Seda', age: 25},
+        {name: 'Sedef', age: 20}
+      ]
+    });
+  }
+
+  console.log(personState);
 
 
- render(){
+
   return (
     <div className="App">
       <h1>Hello React!</h1>
-      <button onClick={this.clickedButton}>Click button</button>
-      <Person name = {this.state.persons[0].name} age = {this.state.persons[0].age}  />
-      <Person name = {this.state.persons[1].name} age = {this.state.persons[1].age}  >She is my sister</Person>
-      <Person name = {this.state.persons[2].name} age = {this.state.persons[2].age}   />
+      <button onClick={clickedButton}>Click button</button>
+      <Person name = {personState.persons[0].name} age = {personState.persons[0].age}  />
+      <Person name = {personState.persons[1].name} age = {personState.persons[1].age}  >She is my sister</Person>
+      <Person name = {personState.persons[2].name} age = {personState.persons[2].age}   />
     </div>
   );
- }
 
 }
 
